@@ -1,6 +1,6 @@
 # cordova-plugin-doze-Optimize
 
-# Whitelisting an Android application programmatically 
+## Whitelisting an Android application programmatically
 
 If you want to run your application in background mode and it should standby even battery optimization enabled, then this Cordova plugin is used to check the doze or battery optimization status and also it help to request whitelist popup for battery optimization.
 
@@ -15,27 +15,22 @@ You have to install this plugin in to your cordova project
 ### Installing
 
 What things you need to install the software and how to install them
-```
-cordova plugin add cordova-plugin-doze-optimize
-```
+> cordova plugin add cordova-plugin-doze-optimize
 
 OR
 
-```
-npm i cordova-plugin-doze-optimize
-```
+> npm i cordova-plugin-doze-optimize
 
 OR
 
-```
-cordova plugin add https://github.com/thomas550i/cordova-plugin-doze-Optimize
-```
+> cordova plugin add https://github.com/thomas550i/cordova-plugin-doze-Optimize
 
-### Usage 
+
+## Usage 
 
 Sample Code to get the status of your app 
 
-```
+```js
 cordova.plugins.DozeOptimize.IsIgnoringBatteryOptimizations(function (responce){
       console.log("IsIgnoringBatteryOptimizations: "+responce);
           if(responce=="false")
@@ -52,7 +47,7 @@ cordova.plugins.DozeOptimize.IsIgnoringBatteryOptimizations(function (responce){
     });
 ```
 
-```
+```js
    cordova.plugins.DozeOptimize.IsIgnoringDataSaver(function (response){
         if(responce=="false")
         {
@@ -69,7 +64,7 @@ cordova.plugins.DozeOptimize.IsIgnoringBatteryOptimizations(function (responce){
 
 Sample Code to Popup ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS to whitelist your app.
 
-```
+```js
     cordova.plugins.DozeOptimize.RequestOptimizations(function (responce){
         console.log(responce); // Will give "Optimizations Requested Successfully"
     }, function (error){
@@ -79,7 +74,7 @@ Sample Code to Popup ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS to whitelist yo
 
 Full Code of usage with step one and two
 
-```
+```js
 cordova.plugins.DozeOptimize.IsIgnoringBatteryOptimizations(function (responce){
       console.log("IsIgnoringBatteryOptimizations: "+responce);
           if(responce=="false")
@@ -97,9 +92,28 @@ cordova.plugins.DozeOptimize.IsIgnoringBatteryOptimizations(function (responce){
     }, function (error){
     console.error("IsIgnoringBatteryOptimizations Error"+error);    
     });
+
+```
+
+### wiredmartian updates (29-06-2021)
+
+Full code usage
+
+``` js
+cordova.plugins.DozeOptimize.RequestOptimizations((res) => {
+    // {"IS_ALLOWED": true}
+    if (res.IS_ALLOWED) {
+        console.log('Requested succesfully and used allowed request');
+    } else {
+        console.log('Requested successfully, but user denied request')
+    }
+  }, (error) => {
+    // request cannot be made
+    console.log(`failed to make RequestOptimizations() request: ${error.message}`);
+});
 ```
 ### Important notes
 
 Battery Optimization will work only Android 6.0 and higher. if you using this plugin below 6.0 you will get "BATTERY_OPTIMIZATIONS Not available" as a result. 
 
-# Contributors are welcome! send Request to thomas550i@gmail.com
+## Contributors are welcome! send Request to thomas550i@gmail.com
